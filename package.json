@@ -1,0 +1,17 @@
+{
+  "name": "k6-performance-test-playwright",
+  "version": "1.0.0",
+  "description": "K6 Performance Testing with Playwright Integration",
+  "scripts": {
+    "test:smoke": "k6 run LoginPlaceOrderRetrieveOrderRefactor.js -e TEST_TYPE=smoke",
+    "test:load": "k6 run LoginPlaceOrderRetrieveOrderRefactor.js -e TEST_TYPE=load",
+    "test:stress": "k6 run LoginPlaceOrderRetrieveOrderRefactor.js -e TEST_TYPE=stress",
+    "test:spike": "k6 run LoginPlaceOrderRetrieveOrderRefactor.js -e TEST_TYPE=spike",
+    "test:soak": "k6 run LoginPlaceOrderRetrieveOrderRefactor.js -e TEST_TYPE=soak",
+    "test:browser": "k6 run --env K6_BROWSER_HEADLESS=true PlaywrightK6.js"
+  },
+  "devDependencies": {
+    "@types/k6": "^0.54.0",
+    "typescript": "^5.4.5"
+  }
+}
