@@ -1,0 +1,87 @@
+{
+    "smoke": {
+        "script": "test/e2e/LoginPlaceOrderRetrieveOrder.js",
+        "options": {
+            "stages": [
+                { "duration": "30s", "target": 10 }],
+            
+            "thresholds": {
+                "http_req_failed": ["rate<0.01"],
+                "checks": ["rate>=1"],
+                "group_duration{group:::Login}": ["p(95)<1000"],
+                "group_duration{group:::Place Order}": ["p(95)<1200"],
+                "group_duration{group:::Retrieve Order}": ["p(95)<1000"],
+                "authentication_rate": ["rate>0.95"],
+                "order_id_counter": ["count>3"]
+            }
+        }
+    },
+    "load": {
+        "script": "test/e2e/LoginPlaceOrderRetrieveOrder.js",
+        "options": {
+            "stages": [
+                { "duration": "1m", "target": 50 },
+                { "duration": "2m", "target": 100 },
+                { "duration": "3m", "target": 200 },
+                { "duration": "4m", "target": 300 },
+                { "duration": "5m", "target": 400 },
+                { "duration": "6m", "target": 500 },
+                { "duration": "7m", "target": 600 },
+                { "duration": "8m", "target": 700 },
+                { "duration": "9m", "target": 800 },
+                { "duration": "10m", "target": 1000 }
+            ],
+            "thresholds": {
+                "checks": ["rate>=1"],
+                "group_duration{group:::Login}": ["p(95)<6000"]
+            }
+        }
+    },
+    "stress": {
+        "script": "test/e2e/LoginPlaceOrderRetrieveOrder.js",
+        "options": {
+            "stages": [
+                { "duration": "1m", "target": 100 },
+                { "duration": "2m", "target": 200 },
+                { "duration": "3m", "target": 400 },
+                { "duration": "4m", "target": 800 },
+                { "duration": "5m", "target": 1600 },
+                { "duration": "6m", "target": 3200 },
+                { "duration": "7m", "target": 6400 },
+                { "duration": "8m", "target": 12800 },
+                { "duration": "9m", "target": 25600 },
+                { "duration": "10m", "target": 51200 }
+            ],
+            "thresholds": {
+            }
+        }
+    },
+    "spike": {
+        "script": "test/e2e/LoginPlaceOrderRetrieveOrder.js",
+        "options": {
+            "stages": [
+                { "duration": "1m", "target": 100 },
+                { "duration": "2m", "target": 1000 },
+                { "duration": "3m", "target": 100 },
+                { "duration": "4m", "target": 1000 },
+                { "duration": "5m", "target": 100 },
+                { "duration": "6m", "target": 1000 },
+                { "duration": "7m", "target": 100 },
+                { "duration": "8m", "target": 1000 },
+                { "duration": "9m", "target": 100 },
+                { "duration": "10m", "target": 1000 }
+            ],
+            "thresholds": {
+            }
+        }
+    },
+    "soak": {
+        "script": "test/e2e/LoginPlaceOrderRetrieveOrder.js",
+        "options": {
+            "vus": 100,
+            "duration": "1h",
+            "thresholds": {
+            }
+        }
+    }
+}
