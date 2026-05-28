@@ -1,5 +1,5 @@
 {
-  "name": "k6-performance-test-playwright",
+  "name": "k6performancetest",
   "version": "1.0.0",
   "description": "K6 Performance Testing with Playwright Integration",
   "scripts": {
@@ -9,9 +9,14 @@
     "test:spike": "k6 run LoginPlaceOrderRetrieveOrderRefactor.js -e TEST_TYPE=spike",
     "test:soak": "k6 run LoginPlaceOrderRetrieveOrderRefactor.js -e TEST_TYPE=soak",
     "test:browser": "k6 run --env K6_BROWSER_HEADLESS=true PlaywrightK6.js"
+    "k6:e2e": "set -a; . ./.env; set +a; k6 run ./test/e2e/LoginPlaceOrderRetrieveOrder.js"
+
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
   "devDependencies": {
-    "@types/k6": "^0.54.0",
-    "typescript": "^5.4.5"
+    "@types/k6": "^2.0.0"
   }
 }
